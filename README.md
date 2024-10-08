@@ -4,15 +4,111 @@ Some reminds in AndroidDev process
 ## Material Design in Android Dev
 Key features of Material Design include:
 
-Material Metaphor: This concept uses tactile surfaces and realistic lighting to create a sense of depth. Elements look and behave like physical materials, providing a familiar experience for users.
+1. Material Metaphor: This concept uses tactile surfaces and realistic lighting to create a sense of depth. Elements look and behave like physical materials, providing a familiar experience for users.
+Example: To make a gradient background for app
+```
+@Composable
+fun GradientBackground() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                brush = Brush.horizontalGradient( 
+                    // use Brush.verticalGradeint to change the angle
+                    colors = listOf(
+                        Color(0xFF64B5F6), // Start color
+                        Color(0xFF0D47A1)  // End color
+                    )
+                )
+            )
+    )
+}
+```
+link: https://developer.android.com/reference/kotlin/android/graphics/LinearGradient
 
-Bold, Graphic, and Intentional: It emphasizes bold colors, large typography, and intentional white space to create a visually appealing and easy-to-navigate interface.
+3. Typography: Bold, Graphic, and Intentional: It emphasizes bold colors, large typography, and intentional white space to create a visually appealing and easy-to-navigate interface.
+Example:
+### Create a Font Resource Folder:
 
-Motion Provides Meaning: Animations are used to guide users, indicate actions, and provide feedback, enhancing the overall experience rather than distracting from it.
+In your res directory, create a new folder named font if it doesn't already exist. Right-click on res, go to New > Android Resource Directory, select font as the Resource Type, and click OK.
 
-Adaptive Design: Material Design promotes responsive and adaptive layouts that adjust to various screen sizes and orientations, ensuring a consistent experience across devices.
+### Add Your Font File:
 
-Components and Patterns: It includes a rich library of UI components and design patterns, making it easier for developers to create consistent and functional applications.
+Place your .ttf or .otf font files into the res/font directory.
+```
+@Composable
+fun Greeting(name: String) {
+    // Create a FontFamily using the custom font
+    val customFont = FontFamily(
+        Font(R.font.your_custom_font) // Replace with your font file name
+    )
+
+    Text(
+        text = name,
+        fontSize = 24.sp,
+        fontFamily = customFont // Apply the custom font
+    )
+}
+```
+
+5. Motion Provides Meaning: Animations are used to guide users, indicate actions, and provide feedback, enhancing the overall experience rather than distracting from it.
+Example:
+First to add animation dependency in build.gradle file
+```
+dependencies {
+    implementation "androidx.compose.animation:animation:1.3.0"
+    // Other dependencies
+}
+```
+simple fade-in animation using Jetpack Compose:
+```
+@Composable
+fun AnimatedContent() {
+    val visible = remember { mutableStateOf(false) }
+
+    Button(onClick = { visible.value = !visible.value }) {
+        Text("Toggle Animation")
+    }
+
+    AnimatedVisibility(
+        visible = visible.value,
+        enter = fadeIn()
+    ) {
+        Text("Hello, Animated World!")
+    }
+}
+```
+
+
+
+7. Adaptive Design: Material Design promotes responsive and adaptive layouts that adjust to various screen sizes and orientations, ensuring a consistent experience across devices.
+Example: LazyColumn
+First set up dependencies:
+```
+dependencies {
+    implementation "androidx.compose.ui:ui:1.3.0"
+    implementation "androidx.compose.material3:material3:1.0.0"
+    implementation "androidx.compose.ui:ui-tooling-preview:1.3.0"
+    // Other dependencies
+}
+```
+```
+@Composable
+fun ItemList() {
+    // Sample data
+    val items = List(100) { "Item #$it" }
+
+    LazyColumn(
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(16.dp)
+    ) {
+        items(items) { item ->
+            ItemCard(item)
+        }
+    }
+}
+```
+9. Components and Patterns: It includes a rich library of UI components and design patterns, making it easier for developers to create consistent and functional applications.
 
 
 ## Basic Layout in Android Compose
