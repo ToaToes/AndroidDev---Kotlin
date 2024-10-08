@@ -295,11 +295,11 @@ class MyChildFragment : Fragment() {
 4. Avoid duplicate
 By using a single ViewModel to manage your app's state, you avoid duplicating state across different fragments or activities. This reduces the chance of bugs arising from inconsistent state management.
 
-### Fragments in Android
+### Fragments in Android (vs Activity)
 Link: https://youtube.com/watch?v=-vAI7RSPxOA&ab_channel=PhilippLackner
 Link: https://www.youtube.com/watch?v=h-NcxT697Nk&ab_channel=Foxandroid
 
-Fragments are modular sections of an Android activity that allow for more flexible UI design and navigation. They represent a portion of the user interface and can be thought of as sub-activities that have their own lifecycle and can be combined in various ways within an activity.
+Fragments are modular sections of an (part of) Android activity that allow for more flexible UI design and navigation. They represent a portion of the user interface and can be thought of as sub-activities that have their own lifecycle and can be combined in various ways within an activity.
 Modularity:
 
 Fragments enable you to build reusable UI components that can be easily shared across different activities.
