@@ -125,6 +125,8 @@ val LocalColor = compositionLocalOf { Color.Unspecified }
 
 ```
 
+### Jetpack Compose doesnot rely on XML Layouts design, so this is just a side knowledgd
+
 ______
 
 ### State Hoisting in Android
