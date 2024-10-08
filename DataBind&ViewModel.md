@@ -1,3 +1,6 @@
+# NOTICE
+Jetpack Compose doesnot rely on XML Layouts design, so this is just a thought
+
 1. Enable Data Binding
 ```
 android {
