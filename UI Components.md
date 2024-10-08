@@ -8,7 +8,11 @@ A modular section of an activity. Fragments can be reused across different activ
 
 _________
 Fragments in Android (vs Activity)
-Link: https://youtube.com/watch?v=-vAI7RSPxOA&ab_channel=PhilippLackner Link: https://www.youtube.com/watch?v=h-NcxT697Nk&ab_channel=Foxandroid
+
+Link: https://youtube.com/watch?v=-vAI7RSPxOA&ab_channel=PhilippLackner
+
+Link: https://www.youtube.com/watch?v=h-NcxT697Nk&ab_channel=Foxandroid
+
 
 Fragments are modular sections of an (part of) Android activity that allow for more flexible UI design and navigation. They represent a portion of the user interface and can be thought of as sub-activities that have their own lifecycle and can be combined in various ways within an activity. Modularity:
 
