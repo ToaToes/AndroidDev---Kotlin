@@ -6,6 +6,24 @@ Represents a single screen in an app. It serves as the entry point for user inte
 
 A modular section of an activity. Fragments can be reused across different activities and help manage complex UIs.
 
+_________
+Fragments in Android (vs Activity)
+Link: https://youtube.com/watch?v=-vAI7RSPxOA&ab_channel=PhilippLackner Link: https://www.youtube.com/watch?v=h-NcxT697Nk&ab_channel=Foxandroid
+
+Fragments are modular sections of an (part of) Android activity that allow for more flexible UI design and navigation. They represent a portion of the user interface and can be thought of as sub-activities that have their own lifecycle and can be combined in various ways within an activity. Modularity:
+
+Fragments enable you to build reusable UI components that can be easily shared across different activities. Lifecycle Management:
+
+Fragments have their own lifecycle that is closely tied to the lifecycle of their hosting activity. They go through states like Created, Started, and Resumed. Dynamic UI:
+
+You can add, remove, or replace fragments at runtime, allowing for a flexible UI that can adapt to different screen sizes and orientations. Back Stack Support:
+
+Fragments can be added to the back stack, enabling users to navigate back through fragment transactions like they would with activities. Communication:
+
+Fragments can communicate with their hosting activity and with each other, typically through interfaces or shared ViewModels.
+
+________
+
 ## Views
 
 Basic UI elements such as:
