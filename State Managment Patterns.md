@@ -13,6 +13,14 @@ class MyViewModel : ViewModel() {
 }
 ```
 
+Use the ViewModel class to store UI-related data in a lifecycle-conscious way. This allows data to survive configuration changes like screen rotations.
+The ViewModel acts as a centralized place to hold the state of your UI, effectively "hoisting" it above the individual UI components.
+```
+class MyViewModel : ViewModel() {
+    var myState: MutableLiveData<String> = MutableLiveData("Initial State")
+}
+```
+
 ## Live Data
 A lifecycle-aware observable data holder. LiveData allows UI components to observe changes in data while respecting the lifecycle of those components, 
 helping prevent memory leaks and crashes.
@@ -20,6 +28,23 @@ helping prevent memory leaks and crashes.
 myViewModel.data.observe(this, Observer { value ->
     // Update UI with new value
 })
+```
+Use LiveData to observe changes in the state. When the data changes, any UI component observing this data will automatically update.
+```
+class MyActivity : AppCompatActivity() {
+    private lateinit var viewModel: MyViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        viewModel = ViewModelProvider(this).get(MyViewModel::class.java)
+
+        viewModel.myState.observe(this, Observer { newState ->
+            // Update your UI based on the new state
+        })
+    }
+}
 ```
 
 ## State Hoisting (mutableStateOf)
@@ -67,3 +92,22 @@ Useful for managing themes, configurations, etc.
 val LocalColor = compositionLocalOf { Color.Unspecified }
 
 ```
+
+
+### State Hoisting in Android
+state hoisting is a concept borrowed from React, but it can be applied in various ways to manage state effectively in your apps. While Android doesn't have "state hoisting" as a formal term, you can achieve similar outcomes through proper architecture and component design.
+
+1. Passing state down
+For Child components (e.g., fragments or custom views) that need to use the state, pass the state down as parameters. This way, the state is managed in one place (the ViewModel), but it's accessible where needed.
+```
+class MyChildFragment : Fragment() {
+    var state: String? = null
+
+    fun updateState(newState: String) {
+        state = newState
+        // Update UI accordingly
+    }
+}
+```
+2. Avoid duplicate
+By using a single ViewModel to manage your app's state, you avoid duplicating state across different fragments or activities. This reduces the chance of bugs arising from inconsistent state management.
