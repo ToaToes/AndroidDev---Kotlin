@@ -297,6 +297,7 @@ By using a single ViewModel to manage your app's state, you avoid duplicating st
 
 ### Fragments in Android
 Link: https://youtube.com/watch?v=-vAI7RSPxOA&ab_channel=PhilippLackner
+
 Fragments are modular sections of an Android activity that allow for more flexible UI design and navigation. They represent a portion of the user interface and can be thought of as sub-activities that have their own lifecycle and can be combined in various ways within an activity.
 Modularity:
 
