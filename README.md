@@ -250,3 +250,65 @@ fun MyApp() {
 }
 
 ```
+
+### State Hoisting in Android
+state hoisting is a concept borrowed from React, but it can be applied in various ways to manage state effectively in your apps. While Android doesn't have "state hoisting" as a formal term, you can achieve similar outcomes through proper architecture and component design.
+
+1. ViewModel
+Use the ViewModel class to store UI-related data in a lifecycle-conscious way. This allows data to survive configuration changes like screen rotations.
+The ViewModel acts as a centralized place to hold the state of your UI, effectively "hoisting" it above the individual UI components.
+```
+class MyViewModel : ViewModel() {
+    var myState: MutableLiveData<String> = MutableLiveData("Initial State")
+}
+```
+2. LiveData
+Use LiveData to observe changes in the state. When the data changes, any UI component observing this data will automatically update.
+```
+class MyActivity : AppCompatActivity() {
+    private lateinit var viewModel: MyViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        viewModel = ViewModelProvider(this).get(MyViewModel::class.java)
+
+        viewModel.myState.observe(this, Observer { newState ->
+            // Update your UI based on the new state
+        })
+    }
+}
+```
+3. Passing state down
+For Child components (e.g., fragments or custom views) that need to use the state, pass the state down as parameters. This way, the state is managed in one place (the ViewModel), but it's accessible where needed.
+```
+class MyChildFragment : Fragment() {
+    var state: String? = null
+
+    fun updateState(newState: String) {
+        state = newState
+        // Update UI accordingly
+    }
+}
+```
+4. Avoid duplicate
+By using a single ViewModel to manage your app's state, you avoid duplicating state across different fragments or activities. This reduces the chance of bugs arising from inconsistent state management.
+
+### Fragments in Android
+Fragments are modular sections of an Android activity that allow for more flexible UI design and navigation. They represent a portion of the user interface and can be thought of as sub-activities that have their own lifecycle and can be combined in various ways within an activity.
+Modularity:
+
+Fragments enable you to build reusable UI components that can be easily shared across different activities.
+Lifecycle Management:
+
+Fragments have their own lifecycle that is closely tied to the lifecycle of their hosting activity. They go through states like Created, Started, and Resumed.
+Dynamic UI:
+
+You can add, remove, or replace fragments at runtime, allowing for a flexible UI that can adapt to different screen sizes and orientations.
+Back Stack Support:
+
+Fragments can be added to the back stack, enabling users to navigate back through fragment transactions like they would with activities.
+Communication:
+
+Fragments can communicate with their hosting activity and with each other, typically through interfaces or shared ViewModels.
