@@ -1,6 +1,13 @@
 # AndroidDev and Compose
 Some reminds in AndroidDev process
 
+## Architecture Patterns
+MVVM (Model-View-ViewModel): Separates concerns for better maintainability.
+
+MVP (Model-View-Presenter): Another separation of concerns with a different flow.
+
+Clean Architecture: Organizes code into layers for easier testing and maintenance.
+
 ## Material Design in Android Dev
 Key features of Material Design include:
 
