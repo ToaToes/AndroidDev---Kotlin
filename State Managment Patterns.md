@@ -57,6 +57,38 @@ fun MyScreen() {
     TextField(value = text, onValueChange = { text = it })
 }
 ```
+###  Internal state to a composable
+In Jetpack Compose, manage internal state in a composable using the remember and mutableStateOf functions. 
+```
+import *
+
+@Composable
+fun Counter() {
+    // Declare a mutable state variable for the count
+    var count by remember { mutableStateOf(0) }
+
+    // Layout for the counter
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(text = "Count: $count", style = MaterialTheme.typography.headlineMedium)
+
+        Row {
+            Button(onClick = { count++ }) {
+                Text("Increment")
+            }
+            Spacer(modifier = Modifier.width(8.dp))
+            Button(onClick = { if (count > 0) count-- }) {
+                Text("Decrement")
+            }
+        }
+    }
+}
+```
 
 ## State Management Libs
 
@@ -116,38 +148,7 @@ By using a single ViewModel to manage your app's state, you avoid duplicating st
 
 
 ——————————
-###  Internal state to a composable
-In Jetpack Compose, you can manage internal state in a composable using the remember and mutableStateOf functions. 
-```
-import *
 
-@Composable
-fun Counter() {
-    // Declare a mutable state variable for the count
-    var count by remember { mutableStateOf(0) }
-
-    // Layout for the counter
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(text = "Count: $count", style = MaterialTheme.typography.headlineMedium)
-
-        Row {
-            Button(onClick = { count++ }) {
-                Text("Increment")
-            }
-            Spacer(modifier = Modifier.width(8.dp))
-            Button(onClick = { if (count > 0) count-- }) {
-                Text("Decrement")
-            }
-        }
-    }
-}
-```
 
 ### Internal state and State hoisting
 Internal state:
