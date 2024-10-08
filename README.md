@@ -1,5 +1,5 @@
 # AndroidDev
-Some remind in AndroidDev process
+Some reminds in AndroidDev process
 
 ## Material Design in Android Dev
 Key features of Material Design include:
