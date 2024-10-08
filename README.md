@@ -189,7 +189,16 @@ Card {
 }
 ```
 
-Scaffold
+!!! Scaffold
+1. Basic Layout Structure: Scaffold sets up the fundamental layout for your UI, including slots for the app bar, bottom navigation, floating action button, and the main content.
+
+2. Top App Bar: You can easily add a TopAppBar to the scaffold, which is typically used for displaying the title of the screen and actions like search or settings.
+
+3. Bottom Navigation: It allows you to include bottom navigation components, making it easy to switch between different sections of your app.
+
+4. Floating Action Button (FAB): You can add a FAB that typically performs the primary action of the screen, such as adding a new item.
+
+5. Content Area: The main content of the screen can be placed within the Scaffold, and it handles the padding automatically to accommodate the app bar, navigation bar, and FAB.
 ```
 Scaffold(
     topBar = { TopAppBar(title = { Text("Title") }) },
@@ -197,4 +206,36 @@ Scaffold(
 ) { innerPadding ->
     // Content goes here
 }
+```
+```
+@Composable
+fun MyApp() {
+    MaterialTheme {
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = { Text("My App") },
+                    actions = {
+                        IconButton(onClick = { /* Handle action */ }) {
+                            Icon(Icons.Default.Search, contentDescription = "Search")
+                        }
+                    }
+                )
+            },
+            floatingActionButton = {
+                FloatingActionButton(onClick = { /* Handle FAB click */ }) {
+                    Icon(Icons.Default.Add, contentDescription = "Add")
+                }
+            }
+        ) { paddingValues ->
+            // Main content goes here
+            // Use paddingValues to avoid content overlapping with top bar or FAB
+            Text(
+                text = "Hello, Scaffold!",
+                modifier = Modifier.padding(paddingValues)
+            )
+        }
+    }
+}
+
 ```
