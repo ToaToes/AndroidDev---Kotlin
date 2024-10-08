@@ -131,6 +131,7 @@ fun ItemCard(item: String) {
 ### 5. Components and Patterns: It includes a rich library of UI components and design patterns, making it easier for developers to create consistent and functional applications.
 Example: Modifier
 
+——————
 
 ## Basic Layout in Android Compose
 Column
