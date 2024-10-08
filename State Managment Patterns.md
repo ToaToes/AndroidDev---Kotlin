@@ -93,6 +93,7 @@ val LocalColor = compositionLocalOf { Color.Unspecified }
 
 ```
 
+______
 
 ### State Hoisting in Android
 state hoisting is a concept borrowed from React, but it can be applied in various ways to manage state effectively in your apps. While Android doesn't have "state hoisting" as a formal term, you can achieve similar outcomes through proper architecture and component design.
