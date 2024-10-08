@@ -315,3 +315,47 @@ Fragments can be added to the back stack, enabling users to navigate back throug
 Communication:
 
 Fragments can communicate with their hosting activity and with each other, typically through interfaces or shared ViewModels.
+
+
+###  Internal state to a composable
+In Jetpack Compose, you can manage internal state in a composable using the remember and mutableStateOf functions. 
+```
+import *
+
+@Composable
+fun Counter() {
+    // Declare a mutable state variable for the count
+    var count by remember { mutableStateOf(0) }
+
+    // Layout for the counter
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(text = "Count: $count", style = MaterialTheme.typography.headlineMedium)
+
+        Row {
+            Button(onClick = { count++ }) {
+                Text("Increment")
+            }
+            Spacer(modifier = Modifier.width(8.dp))
+            Button(onClick = { if (count > 0) count-- }) {
+                Text("Decrement")
+            }
+        }
+    }
+}
+```
+
+### Internal state and State hoisting
+Internal state:
+
+Internal state refers to state that is contained and managed within a single composable. This state is local to that composable and is used to manage its own UI logic. The state is typically managed using remember and mutableStateOf.
+
+
+State hoisting:
+
+State hoisting is a design pattern in which the state is moved up to a parent composable, allowing child composables to receive the state as a parameter. This approach promotes a clear separation of concerns and allows for better state management, particularly when multiple composables need to share or react to the same state.
