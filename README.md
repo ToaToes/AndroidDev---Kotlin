@@ -134,6 +134,7 @@ Example: Modifier
 ——————
 
 ## Basic Layout in Android Compose
+Link: https://developer.android.com/develop/ui/compose/layouts/basics
 Column
 ```
 Column {
@@ -155,6 +156,16 @@ Box
 Box {
     Image(painterResource(R.drawable.image), contentDescription = null)
     Text("Overlay Text", modifier = Modifier.align(Alignment.Center))
+}
+```
+check mark example:
+```
+@Composable
+fun ArtistAvatar(artist: Artist) {
+    Box {
+        Image(bitmap = artist.image, contentDescription = "Artist image")
+        Icon(Icons.Filled.Check, contentDescription = "Check mark")
+    }
 }
 ```
 
