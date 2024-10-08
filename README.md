@@ -4,7 +4,7 @@ Some reminds in AndroidDev process
 ## Material Design in Android Dev
 Key features of Material Design include:
 
-1. Material Metaphor: This concept uses tactile surfaces and realistic lighting to create a sense of depth. Elements look and behave like physical materials, providing a familiar experience for users.
+### 1. Material Metaphor: This concept uses tactile surfaces and realistic lighting to create a sense of depth. Elements look and behave like physical materials, providing a familiar experience for users.
 Example: To make a gradient background for app
 ```
 @Composable
@@ -26,13 +26,14 @@ fun GradientBackground() {
 ```
 link: https://developer.android.com/reference/kotlin/android/graphics/LinearGradient
 
-3. Typography: Bold, Graphic, and Intentional: It emphasizes bold colors, large typography, and intentional white space to create a visually appealing and easy-to-navigate interface.
+### 2. Typography: Bold, Graphic, and Intentional: It emphasizes bold colors, large typography, and intentional white space to create a visually appealing and easy-to-navigate interface.
 Example:
-### Create a Font Resource Folder:
+
+Create a Font Resource Folder:
 
 In your res directory, create a new folder named font if it doesn't already exist. Right-click on res, go to New > Android Resource Directory, select font as the Resource Type, and click OK.
 
-### Add Your Font File:
+Add Your Font File:
 
 Place your .ttf or .otf font files into the res/font directory.
 ```
@@ -51,7 +52,7 @@ fun Greeting(name: String) {
 }
 ```
 
-5. Motion Provides Meaning: Animations are used to guide users, indicate actions, and provide feedback, enhancing the overall experience rather than distracting from it.
+### 3. Motion Provides Meaning: Animations are used to guide users, indicate actions, and provide feedback, enhancing the overall experience rather than distracting from it.
 Example:
 First to add animation dependency in build.gradle file
 ```
@@ -81,7 +82,7 @@ fun AnimatedContent() {
 
 
 
-7. Adaptive Design: Material Design promotes responsive and adaptive layouts that adjust to various screen sizes and orientations, ensuring a consistent experience across devices.
+### 4. Adaptive Design: Material Design promotes responsive and adaptive layouts that adjust to various screen sizes and orientations, ensuring a consistent experience across devices.
 Example: LazyColumn
 First set up dependencies:
 ```
@@ -92,6 +93,7 @@ dependencies {
     // Other dependencies
 }
 ```
+code for lazy column
 ```
 @Composable
 fun ItemList() {
@@ -107,8 +109,27 @@ fun ItemList() {
         }
     }
 }
+
+@Composable
+fun ItemCard(item: String) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp)
+            .clickable { /* Handle click event */ },
+        elevation = CardDefaults.elevation(4.dp)
+    ) {
+        Row(
+            modifier = Modifier.padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(text = item, fontSize = 20.sp)
+        }
+    }
+}
 ```
-9. Components and Patterns: It includes a rich library of UI components and design patterns, making it easier for developers to create consistent and functional applications.
+### 5. Components and Patterns: It includes a rich library of UI components and design patterns, making it easier for developers to create consistent and functional applications.
+Example: Modifier
 
 
 ## Basic Layout in Android Compose
