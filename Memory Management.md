@@ -1,7 +1,7 @@
 Link: https://developer.android.com/topic/performance/memory-overview
 
 (Find and Fix MEMORY LEAKS with Leak Canary in Android)
-Link: https://www.youtube.com/watch?v=VvkRe9vP5Oc
+<br/>Link: https://www.youtube.com/watch?v=VvkRe9vP5Oc
 
 **On Device Level**
 1. ZRAM: Compressed RAM
