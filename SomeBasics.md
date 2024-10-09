@@ -38,6 +38,37 @@ fun main() {
 
 ```
 
+Strong Reference:
+```// Data model class
+data class User(val name: String)
+
+// Main Activity
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var user: User  // Strong reference to User
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // Creating a new User instance
+        user = User("Alice")
+
+        // Using the User instance
+        println("User name: ${user.name}")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // The strong reference 'user' will still hold the User object
+        // until the activity is completely destroyed or 'user' is set to null.
+    }
+}
+```
+
+____
+
+
 
 **Async Task**
 AsyncTask is designed to work with the UI thread and update UI elements. If the activity that started the task is no longer alive (for example, 
@@ -116,6 +147,10 @@ println(instance1.name)  // Outputs: Alice
 println(instance2.name)  // Outputs: Bob
 
 ```
+
+**Static Reference**
+n Android, it's important to be cautious with static references to Activity or Context, 
+as they can prevent those components from being garbage collected, leading to memory leaks.
 
 
 
