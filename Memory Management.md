@@ -44,3 +44,58 @@ Use Weak References: For objects that should not prevent garbage collection (lik
 Profile Memory Usage: Use tools like Android Profiler in Android Studio to monitor memory usage and identify potential memory leaks.
 Release Resources: Explicitly release resources (like Bitmaps) when they are no longer needed to aid the garbage collector.
 
+_____
+
+**Example of Activity with GC**
+
+An Activity that holds a reference to a Listener object, and how to properly manage the lifecycle of this listener to prevent memory leaks.
+1. Create a listener object
+```
+class MyListener {
+    fun onEvent() {
+        // Handle the event
+        println("Event triggered")
+    }
+}
+```
+2. Create an Activity
+```
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+    private var listener: MyListener? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // Initialize the listener
+        listener = MyListener()
+
+        // Simulate an event trigger
+        listener?.onEvent()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Clear the listener reference to avoid memory leaks
+        listener = null
+    }
+}
+/*
+Listener Class:
+The MyListener class represents an object that can handle events. It's a simple class with an onEvent method.
+
+MainActivity:
+Listener Initialization: In the onCreate method, initialize the listener object.
+Event Simulation: simulate an event by calling listener?.onEvent().
+Memory Management: In the onDestroy method, set the listener reference to null. This action makes the MyListener object eligible for garbage collection when the activity is destroyed, preventing a memory leak.
+*/
+
+```
+**Avoiding Memory Leaks**
+In this example, if we didn't set listener to null in onDestroy, the MyListener object would still hold a reference to the MainActivity. This could prevent the activity from being garbage collected, leading to memory leaks.
+
+
+
