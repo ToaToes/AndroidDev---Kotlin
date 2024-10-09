@@ -34,3 +34,21 @@ The tools and libraries provided in the SDK facilitate rapid application develop
 #### Integration with Services:
 The SDK allows for easy integration with various Google services (like Firebase, Google Maps, etc.), enhancing app functionality.
 
+### EXAMPLE:
+
+#### minSdk
+Minimum Android API level your app can run on.
+
+Normal set to minSdk = 21 / 24 / 26
+
+#### targetSdk (More refers to behavior)
+The APIs version the app has been tested against, The version of Android (APIs) that your app was created to run on.
+**Note: Google play will have minimum request for targetSdk version**
+
+#### compileSdk (More refers to actual technique APIs)
+Define which level of APIs of the Android SDK the app been compiling with.
+Can not be set lower than targetSdk version, while targetSdk can be set lower than compileSdk,
+
+The version of the Android SDK that app is compiled against during the build process. It determines the set of APIs and features available for you to use in your code.
+
+
