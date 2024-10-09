@@ -113,4 +113,82 @@ Memory Management: In the onDestroy method, set the listener reference to null. 
 In this example, if we didn't set listener to null in onDestroy, the MyListener object would still hold a reference to the MainActivity. This could prevent the activity from being garbage collected, leading to memory leaks.
 
 
+_____
+
+**Interesting side thought**
+How does java detect that an object needs to be garbage collected:
+```
+public class GarbageCollectionExample {
+
+    static class MyObject {
+        String name;
+
+        MyObject(String name) {
+            this.name = name;
+        }
+
+        @Override
+        protected void finalize() throws Throwable {
+            System.out.println(name + " is being garbage collected");
+        }
+    }
+
+    public static void main(String[] args) {
+        // Create a new object
+        MyObject obj1 = new MyObject("Object 1");
+        MyObject obj2 = new MyObject("Object 2");
+
+        // Reference to obj1 is still held
+        System.out.println("Before nullifying obj2");
+        
+        // Nullify obj2 reference
+        obj2 = null;
+
+        // Suggest garbage collection
+        System.gc();
+
+        // Sleep for a while to allow GC to run
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Now let's nullify obj1 and allow it to be garbage collected as well
+        obj1 = null;
+
+        // Suggest garbage collection again
+        System.gc();
+
+        // Sleep for a while to allow GC to run
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+/*
+Output:
+
+Before nullifying obj2
+Object 2 is being garbage collected
+Object 1 is being garbage collected
+
+*/
+
+/*
+MyObject Class:
+This class has a constructor that takes a name and overrides the finalize() method. The finalize() method is called by the garbage collector before reclaiming the object's memory, and here it prints a message indicating that the object is being garbage collected.
+
+Main Method:
+Creating Objects: Two instances of MyObject (obj1 and obj2) are created. At this point, both objects are reachable because they are referenced by obj1 and obj2.
+Nullifying Reference: After printing a message, obj2 is set to null. This makes obj2 unreachable since there are no references pointing to it anymore.
+Suggesting Garbage Collection: The System.gc() method is called to suggest that the JVM performs garbage collection. Note that this is merely a suggestion; the JVM can choose to ignore it.
+Sleeping for GC: The program sleeps for a second to give the garbage collector time to run.
+Nullifying Another Reference: obj1 is also set to null, making it unreachable as well.
+Another Garbage Collection Suggestion: Again, System.gc() is called to suggest garbage collection.
+*/
+
+```
 
