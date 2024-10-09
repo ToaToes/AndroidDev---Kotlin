@@ -19,6 +19,18 @@ or might just start again with the 'state', it might be not seamless. (Like Game
 
 ## Garbage Collection(GC)
 
+In JAVA:
+```
+String str = new String("Hello, World!");
+// No need to free 'str'; GC will handle it.
+```
+In C / C++:
+```
+char* str = (char*)malloc(20 * sizeof(char));
+// Use 'str'...
+free(str); // Must remember to free
+```
+
 ### 1. Memory Management Basics
 Heap Memory: When an application creates objects, they are stored in heap memory. As objects are created and used, memory consumption increases.
 Automatic Memory Management: To avoid memory leaks and excessive memory usage, Android uses garbage collection to automatically free up memory from objects that are no longer reachable or needed.
