@@ -17,7 +17,7 @@ Tools like Android Debug Bridge (ADB) and the Android Profiler help developers d
 #### APIs:
 The SDK provides access to various Android APIs that allow developers to implement features such as camera access, location services, and notifications.
 
-**Importance of the Android SDK**
+## **Importance of the Android SDK**
 
 #### Development Framework:
 The Android SDK provides a comprehensive framework for building Android applications, offering all the necessary tools to create, test, and debug apps.
