@@ -122,7 +122,7 @@ External configuration is also a separation of concern pattern in that all probl
 
 Note that external configuration is not required to use the DI pattern, for simple interconnections a small builder object is often adequate. There is a tradeoff in flexibility between the two. A builder object is not as flexible an option as an externally visible configuration file. The developer of the DI system must weigh the advantages of flexibility over convenience, taking care that small scale, fine grain control over object construction as expressed in a configuration file may increase confusion and maintenance costs down the line.
 
-
+______
 Example Flows:
 ```
 In this example, we used dependency injection with Hilt to manage dependencies in an Android app that fetches user data.
@@ -136,5 +136,111 @@ Implement a repository to abstract data operations.
 Create a ViewModel that uses the repository.
 Inject the ViewModel into an Activity and observe data.
 This approach leads to clean, maintainable, and testable code.
+
+```
+_____
+
+Coding example for dependency injection: Calculator app
+
+Dependency Non-injection:
+```
+// Define the Operation Interface
+interface Operation {
+    fun execute(a: Int, b: Int): Int
+}
+
+...
+
+// Create Concrete Implementations
+class Addition : Operation {
+    override fun execute(a: Int, b: Int): Int {
+        return a + b
+    }
+}
+
+class Subtraction : Operation {
+    override fun execute(a: Int, b: Int): Int {
+        return a - b
+    }
+}
+
+...
+
+// Create the Calculator Class (No Dependency Injection)
+// In this case, the Calculator class creates instances of the operations internally:
+class Calculator {
+    private val addition = Addition() // Directly creating dependency
+    private val subtraction = Subtraction() // Directly creating dependency
+
+    fun calculateAddition(a: Int, b: Int): Int {
+        return addition.execute(a, b)
+    }
+
+    fun calculateSubtraction(a: Int, b: Int): Int {
+        return subtraction.execute(a, b)
+    }
+}
+
+...
+
+// Using the Calculator
+// can use the Calculator class directly:
+fun main() {
+    val calculator = Calculator()
+    
+    // Using Addition
+    println("Addition: ${calculator.calculateAddition(5, 3)}") // Output: 8
+    
+    // Using Subtraction
+    println("Subtraction: ${calculator.calculateSubtraction(5, 3)}") // Output: 2
+}
+
+```
+Dependency injection:
+```
+// Define the Operation Interface
+interface Operation {
+    fun execute(a: Int, b: Int): Int
+}
+
+...
+
+// Create Concrete Implementations
+class Addition : Operation {
+    override fun execute(a: Int, b: Int): Int {
+        return a + b
+    }
+}
+
+class Subtraction : Operation {
+    override fun execute(a: Int, b: Int): Int {
+        return a - b
+    }
+}
+
+...
+
+// Create the Calculator Class
+class Calculator(private val operation: Operation) {
+    fun calculate(a: Int, b: Int): Int {
+        return operation.execute(a, b)
+    }
+}
+
+...
+
+// Using Dependency Injection
+// Now, can create instances of Calculator with different operations:
+fun main() {
+    // Using Addition
+    val addition = Addition()
+    val calculatorWithAddition = Calculator(addition)
+    println("Addition: ${calculatorWithAddition.calculate(5, 3)}") // Output: 8
+
+    // Using Subtraction
+    val subtraction = Subtraction()
+    val calculatorWithSubtraction = Calculator(subtraction)
+    println("Subtraction: ${calculatorWithSubtraction.calculate(5, 3)}") // Output: 2
+}
 
 ```
