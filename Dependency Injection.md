@@ -58,18 +58,18 @@ _____
 
 ## Dependency, Variable, Instance Variables
 
-Dependency not injection:
+Dependency non-injection:
 ```
 public class Example {
-  private DatabaseThingie myDatabase;
+  private DatabaseThingie myDatabase;   <----
 
   public Example() {
-    myDatabase = new DatabaseThingie();
+    myDatabase = new DatabaseThingie();    <----
   }
 
   public void DoStuff() {
     ...
-    myDatabase.GetData();
+    myDatabase.GetData();    <----
     ...
   }
 }
@@ -84,7 +84,7 @@ public class Example {
     myDatabase = new DatabaseThingie();
   }
 
-  public Example(DatabaseThingie useThisDatabaseInstead) {
+  public Example(DatabaseThingie useThisDatabaseInstead) {     <----
     myDatabase = useThisDatabaseInstead;
   }
 
@@ -121,3 +121,20 @@ External (Xml) configuration of DI objects means that others can customize your 
 External configuration is also a separation of concern pattern in that all problems of object initialization and object interdependency management can be handled by the application server.
 
 Note that external configuration is not required to use the DI pattern, for simple interconnections a small builder object is often adequate. There is a tradeoff in flexibility between the two. A builder object is not as flexible an option as an externally visible configuration file. The developer of the DI system must weigh the advantages of flexibility over convenience, taking care that small scale, fine grain control over object construction as expressed in a configuration file may increase confusion and maintenance costs down the line.
+
+
+Example Flows:
+```
+In this example, we used dependency injection with Hilt to manage dependencies in an Android app that fetches user data. Here’s a recap of the steps:
+
+Set up Hilt for dependency injection.
+Create data models (User).
+Define the DAO for database operations.
+Set up the Room database.
+Create a Hilt module to provide instances of the database and DAO.
+Implement a repository to abstract data operations.
+Create a ViewModel that uses the repository.
+Inject the ViewModel into an Activity and observe data.
+This approach leads to clean, maintainable, and testable code.
+
+```
