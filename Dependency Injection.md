@@ -34,6 +34,8 @@ val engine = Engine() // Creating an Engine object
 val car = Car(engine) // Car object depends on Engine object
 ```
 
+_____
+DI:
 
 Link: https://stackoverflow.com/questions/1638919/how-to-explain-dependency-injection-to-a-5-year-old
 
