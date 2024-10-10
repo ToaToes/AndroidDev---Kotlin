@@ -8,7 +8,28 @@ Link: https://stackoverflow.com/questions/131975/what-are-the-benefits-of-depend
 
 "Dependency injection means giving an object its instance variables"
 
+Dependency Injection:
 
+DI is a design pattern where an object (or class) receives its dependencies from an external source rather than creating them itself. This promotes loose coupling and enhances testability.
+Instance Variables as Dependencies:
+
+In a typical class, instance variables might represent dependencies that the class needs to function. However, with DI, instead of defining and instantiating these dependencies within the class, you can pass them as parameters.
+
+_____
+
+## Dependency, Variable, Instance Variables
+
+
+_____
+
+**Dependency Injection:**
+
+DI is a design pattern where an object (or class) receives its dependencies from an external source rather than creating them itself. This promotes loose coupling and enhances testability.
+**Instance Variables as Dependencies:**
+
+In a typical class, instance variables might represent dependencies that the class needs to function. However, with DI, instead of defining and instantiating these dependencies within the class, you can pass them as parameters.
+
+_____
 
 **Strengths of a system built using DI patterns:**
 
