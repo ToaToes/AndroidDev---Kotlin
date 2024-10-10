@@ -125,7 +125,7 @@ Note that external configuration is not required to use the DI pattern, for simp
 
 Example Flows:
 ```
-In this example, we used dependency injection with Hilt to manage dependencies in an Android app that fetches user data. Here’s a recap of the steps:
+In this example, we used dependency injection with Hilt to manage dependencies in an Android app that fetches user data.
 
 Set up Hilt for dependency injection.
 Create data models (User).
