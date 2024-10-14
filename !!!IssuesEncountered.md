@@ -1,4 +1,5 @@
 **java.lang.NoClassDefFoundError: org/gradle/tooling/BuildException error.**
+**Build Error: 'kspDebugKotlin' task (current target is 17)**
 
 Kotlin script standalong triggered:
 
