@@ -1,9 +1,9 @@
 Jetpack Compose is a modern UI toolkit for building native Android interfaces. It simplifies UI development by using a declarative approach, allowing developers to describe their UI components and how they should behave in response to data changes.
 
-**Declarative UI:**
+**Declarative UI:** UI on coding not XML <br/>
 Instead of dealing with XML layouts, you write Kotlin code to define your UI. This makes it easier to visualize and manage UI states.
 
-**Composable Functions:**
+**Composable Functions:** Reused <br/>
 You create UI elements as composable functions, which can be combined and reused. Each function can manage its own state and layout.
 
 **State Management:**
