@@ -35,6 +35,52 @@ For example: listner used in long time operation, will have to unregister
 when we register a listener to Activity or Fragment but forget to unregister it.
 These listeners hold strong reference to it and prevent it from being garbage collected even when it is unused.
 
+4. Singleton with context
+If a singleton holds a reference to a context (especially an Activity context), it can lead to serious memory leaks.
+
+Singletons class are designed to stay alive for the duration of an application’s lifecycle. If a singleton holds a direct reference to an Activity context, it prevents that Activity instance from being garbage collected even after it’s destroyed, leading to a memory leak. 
+
+Memory Leak:
+```
+class MySingleton private constructor(context: Context){
+    init{
+        // initalize code that uses the context
+    }
+
+    companion object{
+        private var instance: MySingleton? = null
+
+        fun getInstance(context: Context): MySingleton{
+            if (instance == null){
+                instance = MySingleton(context) // Here its useing the context of the activity,
+                                                // if it holds direct reference to Activity, activity will not be GC
+            }
+            return instance!!
+        }
+    }
+}
+```
+Solution:
+```
+class MySingleton private constructor(context: Context){
+    init{
+        // use the application context instead of the activity context to prevent memory leak
+        val applicationContext = context.applicationContext
+    }
+
+    companion object{
+        private var instance: MySingleton? = null
+
+        fun getInstance(context: Context): MySingleton{
+            if (instance == null){
+                instance = MySingleton(context.applicationContext)  // Here its useing app context, is app life long,
+                                                                    // match the lifecycle of singleton
+            }
+            return instance!!
+        }
+    }
+}
+```
 
 
 ## Garbage Collection(GC)
