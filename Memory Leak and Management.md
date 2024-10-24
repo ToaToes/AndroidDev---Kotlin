@@ -17,12 +17,17 @@ When switching to background, apps would save a current state, there might be st
 or might just start again with the 'state', it might be not seamless. (Like Game been killed in background)
 
 ## Memory Leak<br>
-1. static view or reference might cause leak -> use ViewModel or SavedInstanceState instead
 https://medium.com/@skaran5672011/memory-leakage-and-best-practices-to-avoid-memory-leakage-in-android-a8a268344cf2 
+
+1. static view or reference might cause leak -> use ViewModel or SavedInstanceState instead
+companion object (which is good for dependency injection and test) VS. static instance -> Static view or reference
+
+if want to use companion object, use weak reference or to clear it later<br/>
+Dagger or Hilt. These frameworks help manage dependencies in a way that minimizes the risk of memory leaks.
 
 2. Handler but not custom to weak reference -> strong reference will cause memory leak
 Create an Activity that uses a Handler to perform a delayed operation, 
-### Delayed Toast Message
+_Delayed Toast Message_
 Let's say you want to display a message 2 seconds after a button is clicked. Here’s how you can implement it using a Handler.
 
 have to use handler.removeCallbacksAndMessages(null) in onDestroy() to clean up reference, <br/>
