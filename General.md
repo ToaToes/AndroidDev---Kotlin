@@ -6,6 +6,13 @@ MVVM (Model-View-ViewModel): Separates concerns for better maintainability.
 
 MVP (Model-View-Presenter): Another separation of concerns with a different flow.
 
+- M: Represent Data and Logics of te application, handle data retrieval and storage
+- V: UI component for displying data to user, could be Activity or Fragments
+- VM: bridge, hold data and manage UI logic, lifecycle aware, can _survive configuration changes_(screen rotate)
+- use databinding to update to automatically update view when VM change
+- P: Preseter, more manually update than VM, does not come with Data binding
+
+
 Clean Architecture: Organizes code into layers for easier testing and maintenance.
 
 ## Material Design in Android Dev
