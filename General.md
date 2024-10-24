@@ -309,7 +309,7 @@ class MyChildFragment : Fragment() {
 4. Avoid duplicate
 By using a single ViewModel to manage your app's state, you avoid duplicating state across different fragments or activities. This reduces the chance of bugs arising from inconsistent state management.
 
-### Fragments in Android (vs Activity)
+### Fragments in Android (vs Activity) - Fragments 之间用handler交流
 Link: https://youtube.com/watch?v=-vAI7RSPxOA&ab_channel=PhilippLackner
 Link: https://www.youtube.com/watch?v=h-NcxT697Nk&ab_channel=Foxandroid
 
