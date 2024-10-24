@@ -16,6 +16,24 @@ Unlike Linux, which will have this problem.
 When switching to background, apps would save a current state, there might be still memory carries it on when user switch back to using,
 or might just start again with the 'state', it might be not seamless. (Like Game been killed in background)
 
+## Memory Leak<br>
+1. static view or reference might cause leak -> use ViewModel or SavedInstanceState instead
+https://medium.com/@skaran5672011/memory-leakage-and-best-practices-to-avoid-memory-leakage-in-android-a8a268344cf2 
+
+2. Handler but not custom to weak reference -> strong reference will cause memory leak
+Create an Activity that uses a Handler to perform a delayed operation, 
+### Delayed Toast Message
+Let's say you want to display a message 2 seconds after a button is clicked. Here’s how you can implement it using a Handler.
+
+have to use handler.removeCallbacksAndMessages(null) in onDestroy() to clean up reference, <br/>
+but in default, handler function use strong reference, so when activity stop, handler still hold to the ```Runnable``` will prevent activity from GC <br/>
+so have to custom the handler to weak reference -> **This allows the Activity to be garbage collected even if the Handler still exists.** <br/>
+
+3. Using Listeners -> always unregister when not used in activity
+when we register a listener to Activity or Fragment but forget to unregister it.
+These listeners hold strong reference to it and prevent it from being garbage collected even when it is unused.
+
+
 
 ## Garbage Collection(GC)
 
