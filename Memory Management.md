@@ -30,6 +30,8 @@ but in default, handler function use strong reference, so when activity stop, ha
 so have to custom the handler to weak reference -> **This allows the Activity to be garbage collected even if the Handler still exists.** <br/>
 
 3. Using Listeners -> always unregister when not used in activity
+For example: listner used in long time operation, will have to unregister
+
 when we register a listener to Activity or Fragment but forget to unregister it.
 These listeners hold strong reference to it and prevent it from being garbage collected even when it is unused.
 
