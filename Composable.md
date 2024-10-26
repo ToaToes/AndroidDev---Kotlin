@@ -18,6 +18,26 @@ SetContent -> SetContent View from XML
 Inside the content block is where to define the composable function -> which is for UI display
 - a Composable is a function that is annotated with the ```@Composable``` annotation and is used to define a part of the user interface (UI). 
 - Composables are the building blocks of a Compose UI, allowing you to create a declarative and functional approach to UI design.
+- MyComposable() will be invoked when the Activity is created.
+- If the Activity is paused or destroyed, the Composable's state will be managed accordingly.
+
+
+### Composable
+1. Declarative UI: Composables allow you to describe the UI in a way that reflects its current state, rather than specifying how to update the UI when the state changes.
+2. Reusable: You can create custom Composables to encapsulate UI logic and behavior, making it easy to reuse across different parts of your application.
+3. State Management: Composables can easily manage and react to state changes using state holders like remember and mutableStateOf.
+4. Hierarchical Structure: Composables can be nested to create complex UIs, with parent Composables managing child Composables.
+```
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+
+@Composable
+fun Greeting(name: String) {
+    Text(text = "Hello, $name!")
+}
+
+```
+And put into the setContent block to run
 
 ### Relationship Composable with Activity/Fragments
 1. Composables are closely integrated with the Android lifecycle. When you set the content of an Activity using setContent, 
@@ -25,7 +45,17 @@ the Composables are managed within the context of that Activity's lifecycle.
 2. Recomposed: Will update automatically following the Activity going through lifecycle changes - like a device rotation
 3. When Activity destroyed, composable will be automatically removed from memory, (clean up) to prevent memory leak
 
-### Composable in Lifecycle and Recomposition
+
+
+### Composable in Lifecycle
+
+use lifecycle-aware components, like ```remember```, ```rememberSaveable```, and ```LaunchedEffect```, to handle state in a way that is responsive to lifecycle changes:
+
+- remember: Stores values across recompositions but not across configuration changes.
+- rememberSaveable: Stores values across recompositions and configuration changes, allowing you to save state when the Activity is recreated.
+- LaunchedEffect: Runs a coroutine that is tied to the lifecycle of the Composable and can restart based on specified keys.
+
+### Composable in Lifecycle and Recomposition 
 1. onRestart():
 
 This method is called when the Activity is coming back to the foreground after being stopped.
