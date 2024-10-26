@@ -19,3 +19,20 @@ Compose comes with built-in support for Material Design, enabling developers to 
 It offers excellent tooling support in Android Studio, including a preview feature to see UI changes in real time without needing to run the app.
 
 Overall, Jetpack Compose aims to make Android UI development faster, more intuitive, and more flexible.
+
+
+## Modifier
+```
+modifier = Modifier
+  backgound(Color.Red)
+  padding(16.dp)
+  backgroun(Color.Green) -> this will only apply to the padding, not affecting the last background 
+
+AND
+
+modifier = Modifier
+  .background(Color.Red)
+  .background(Color.Green) -> this will override the last background
+  .padding(16.dp)
+
+```
