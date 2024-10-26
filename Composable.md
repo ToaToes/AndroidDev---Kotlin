@@ -22,8 +22,8 @@ Inside the content block is where to define the composable function -> which is 
 - If the Activity is paused or destroyed, the Composable's state will be managed accordingly.
 
 
-### Composable
-1. Declarative UI: Composables allow you to describe the UI in a way that reflects its current state, rather than specifying how to update the UI when the state changes.
+### Composable, what used to called _View_ in XML, now is _Composable_ 
+1. _**Declarative UI**_(key): Composables allow you to describe the UI in a way that reflects its current state, rather than specifying how to update the UI when the state changes.
 2. Reusable: You can create custom Composables to encapsulate UI logic and behavior, making it easy to reuse across different parts of your application.
 3. State Management: Composables can easily manage and react to state changes using state holders like remember and mutableStateOf.
 4. Hierarchical Structure: Composables can be nested to create complex UIs, with parent Composables managing child Composables.
